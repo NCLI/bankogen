@@ -11,4 +11,5 @@ for i in $(seq 0 $(expr $N - 1)); do
     ./svg2pdf.sh $fname
 done
 
-pdfjoin -o bankoplader.pdf gen/*.pdf
+#pdfjoin -o bankoplader.pdf gen/*.pdf
+pdfjam gen/*.pdf --landscape --outfile ../bankoplader.pdf

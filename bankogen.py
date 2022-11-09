@@ -42,7 +42,7 @@ def generate_bankoplade():
         poss.append((x, y))
         yxs[y].append(x)
     for y in range(3):
-        xs = range(9)
+        xs = list(range(9))
         ts = yxs[y]
         for t in ts:
             xs.remove(t)
@@ -52,7 +52,7 @@ def generate_bankoplade():
             poss.append((x, y))
 
     banko = [None for _ in range(9)]
-    xs = range(9)
+    xs = list(range(9))
     random.shuffle(xs)
     for x in xs:
         col = []
@@ -64,7 +64,12 @@ def generate_bankoplade():
                 nns += 1
             else:
                 col.append(None)
-        ns = range(10)
+        if x == 0:
+            ns = list(range(1,10))
+        elif x == 8:
+            ns = list(range(1,11))
+        else:
+            ns = list(range(0,10))
         random.shuffle(ns)
         ns = ns[:nns]
         ns.sort()
@@ -77,11 +82,16 @@ def generate_bankoplade():
 
 def make_banko_svg():
     atb = alphatobanko()
+    bankoplader = [[[]]]
+    banko = [[]]
+    bankoplader.append(banko)
     with open('skabelon.svg') as f:
         bt = f.read()
 
-    for _ in range(4):
-        banko = generate_bankoplade()
+    for _ in range(6):
+        while (banko in bankoplader):
+            banko = generate_bankoplade()
+        bankoplader.append(banko)
         for x in range(9):
             for y in range(3):
                 v = banko[x][y]
@@ -91,6 +101,6 @@ def make_banko_svg():
                 else:
                     bt = bt.replace(a, '%02d' % v, 1)
     return bt
-    
+
 if __name__ == '__main__':
-    print make_banko_svg()
+    print(make_banko_svg())

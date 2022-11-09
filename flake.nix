@@ -18,7 +18,6 @@
           buildInputs = [
             (pkgs.${python}.withPackages
               (ps: with ps; [
-	        pandas
               ]))
 	      pkgs.inkscape
 	      pkgs.texlive.combined.scheme-full
@@ -42,3 +41,4 @@
           }) (pkgs.mkShell { }) envs);
       in { devShell = mergeEnvs [ (devShell pkgs) pythonShell ]; });
 }
+

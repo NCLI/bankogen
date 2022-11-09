@@ -6,4 +6,4 @@ basename=${svgname%.*}
 pdfname="$basename.pdf"
 fullpdfname="$dirname/$pdfname"
 echo "Converting $svgname to $pdfname..."
-inkscape "--export-pdf=$fullpdfname" "$fullsvgname"
+inkscape "--export-filename=$fullpdfname" "$fullsvgname"
