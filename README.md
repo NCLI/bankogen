@@ -3,7 +3,7 @@ bankogen
 
 DIKU Banko-bankoplade-flyer-generator.  Fo' realyo.
 
-**Vigtigt**: BANKOPLADERNE ER NUL-INDEKSEREDE!  Bare fordi.
+**Vigtigt**: BANKOPLADERNE ER IKKE NUL-INDEKSEREDE!  Bare fordi.
 
 
 Brug
@@ -29,5 +29,7 @@ Ophavsret
 =========
 
 Copyright (c) 2013, 2020 Niels G. W. Serup
+
+Modificeret og ported til Python 3 af Nicholas Ipsen 2022
 
 Licens: AGPLv3+
