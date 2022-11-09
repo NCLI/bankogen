@@ -10,6 +10,9 @@ i en svg-fil.
 
 import itertools
 import random
+import pickle
+
+from os.path import exists
 
 
 # Slam begynder her.
@@ -81,10 +84,14 @@ def generate_bankoplade():
     return banko
 
 def make_banko_svg():
+    if exists("./plader.pkl"):
+        file = open('./plader.pkl', 'rb')
+        bankoplader = pickle.load(file)
+        file.close()
+    else:
+        bankoplader = [[[]]]
     atb = alphatobanko()
-    bankoplader = [[[]]]
     banko = [[]]
-    bankoplader.append(banko)
     with open('skabelon.svg') as f:
         bt = f.read()
 
@@ -100,6 +107,9 @@ def make_banko_svg():
                     bt = bt.replace(a, '', 1)
                 else:
                     bt = bt.replace(a, '%02d' % v, 1)
+    file = open('./plader.pkl', 'wb')
+    pickle.dump(bankoplader, file)
+    file.close()
     return bt
 
 if __name__ == '__main__':
