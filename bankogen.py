@@ -71,7 +71,7 @@ def generate_bankoplade():
         if x == 0:
             ns = list(range(1,10))
         elif x == 8:
-            ns = list(range(1,11))
+            ns = list(range(0,11))
         else:
             ns = list(range(0,10))
         random.shuffle(ns)
