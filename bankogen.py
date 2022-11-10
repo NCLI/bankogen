@@ -11,6 +11,7 @@ i en svg-fil.
 import itertools
 import random
 import pickle
+import copy
 
 from os.path import exists
 
@@ -89,16 +90,18 @@ def make_banko_svg():
         bankoplader = pickle.load(file)
         file.close()
     else:
-        bankoplader = [[[]]]
+        bankoplader = [[None]]
     atb = alphatobanko()
-    banko = [[]]
+    flat_banko = [None]
     with open('skabelon.svg') as f:
         bt = f.read()
 
     for _ in range(6):
-        while (banko in bankoplader):
+        while (flat_banko in bankoplader):
             banko = generate_bankoplade()
-        bankoplader.append(banko)
+            flat_banko = copy.deepcopy(banko)
+            flat_banko = [item for column in flat_banko for item in column if item is not None]
+        bankoplader.append(flat_banko)
         for x in range(9):
             for y in range(3):
                 v = banko[x][y]
